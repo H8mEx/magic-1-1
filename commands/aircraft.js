@@ -65,12 +65,13 @@ const f16Data = {
     "nickname": "Viper",
     "first_flight": "Jan 20, 1974",
     "role": types[0] + ", "+types[1],
-    "Top Speed": 2.05, //Mach
-    "Climb Rate": 254, //m/s
-    "Gross weight": 26.500, //lbs 
-    "Thrust/Weight": 1.095,
-    "Service Ceiling": 58000, //ft
-    "G-Limits', value": 9
+    "top_speed": 2.05, //Mach
+    "climb_rate": 254, //m/s
+    "gross_weight": 26.500, //lbs 
+    "thrust_weight": 1.095,
+    "service_ceiling": 58000, //ft
+    "g-limit": 9,
+    "description": "The General Dynamics F-16 Fighting Falcon is a single-engine multirole fighter aircraft originally developed by General Dynamics for the United States Air Force. Designed as an air superiority day fighter, it evolved into a successful all-weather multirole aircraft.'"
 }
 
 
@@ -79,22 +80,21 @@ const f16Data = {
 //f16
 const f16Embed = new MessageEmbed()
 .setColor('#0099ff')
-.setTitle('F-16 Fighting Falcon')
+.setTitle(f16Data.name)
 .setURL('https://pcpilotscrew.com/')
 .setAuthor({ name: 'PC Pilots Crew', iconURL: 'https://pcpilotscrew.com/wp-content/uploads/2022/02/pcpi-emblem-clean-small.png', url: 'https://discord.js.org' })
-.setDescription('The General Dynamics F-16 Fighting Falcon is a single-engine multirole fighter aircraft originally developed by General Dynamics for the United States Air Force. Designed as an air superiority day fighter, it evolved into a successful all-weather multirole aircraft.')
+.setDescription(f16Data.description)
 .setThumbnail('https://pcpilotscrew.com/wp-content/uploads/photo-gallery/pcpi2_ytlogo_1024.png?bwg=1584451838')
 .addFields(
     { name: 'First Flight', value: f16Data.name, inline: true },
-//		{ name: '\u200B', value: '\u200B' },
 { name: 'Nickname', value: 'Viper', inline: true },
-{ name: 'Role', value: 'Multirole fighter, air superiority fighter', inline: true },
-    { name: 'Top Speed', value: 'Mach 2.05', inline: true },
-    { name: 'Climb Rate', value: '254 m/s', inline: true },
-{ name: 'Gross weight', value: '26,500 lb (12,020 kg)', inline: true },
-{ name: 'Thrust/Weight', value: '1.095', inline: true },
-{ name: 'Service Ceiling', value: '58000 ft', inline: true },
-{ name: 'G-Limits', value: '+9.0', inline: true },
+{ name: 'Role', value: f16Data.role, inline: true },
+    { name: 'Top Speed', value: f16Data.top_speed, inline: true },
+    { name: 'Climb Rate', value: f16Data.climb_rate, inline: true },
+{ name: 'Gross weight', value: f16Data.gross_weight, inline: true },
+{ name: 'Thrust/Weight', value: f16Data.thrust_weight, inline: true },
+{ name: 'Service Ceiling', value: f16Data.service_ceiling, inline: true },
+{ name: 'G-Limits', value: f16Data['g-limit'], inline: true },
   
 )
 .setImage('https://i.imgur.com/tHPVrax.jpeg')
