@@ -89,11 +89,11 @@ const f16Embed = new MessageEmbed()
     { name: 'First Flight', value: f16Data.name, inline: true },
 { name: 'Nickname', value: 'Viper', inline: true },
 { name: 'Role', value: f16Data.role, inline: true },
-    { name: 'Top Speed', value: f16Data.top_speed, inline: true },
-    { name: 'Climb Rate', value: f16Data.climb_rate, inline: true },
-{ name: 'Gross weight', value: f16Data.gross_weight, inline: true },
+    { name: 'Top Speed', value: "Mach: "+f16Data.top_speed, inline: true },
+    { name: 'Climb Rate', value: f16Data.climb_rate+" m/s", inline: true },
+{ name: 'Gross weight', value: f16Data.gross_weight+" lbs", inline: true },
 { name: 'Thrust/Weight', value: f16Data.thrust_weight, inline: true },
-{ name: 'Service Ceiling', value: f16Data.service_ceiling, inline: true },
+{ name: 'Service Ceiling', value: f16Data.service_ceiling+" ft", inline: true },
 { name: 'G-Limits', value: f16Data['g-limit'], inline: true },
   
 )
