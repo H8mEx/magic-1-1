@@ -55,6 +55,26 @@ module.exports = {
 
 }
 
+const types = [
+    "Multirole Fighter",
+    "Air Superiority Fighter"
+]
+
+const f16Data = {
+    "name": "F-16 Fighting Falcon",
+    "nickname": "Viper",
+    "first_flight": "Jan 20, 1974",
+    "role": types[0] + ", "+types[1],
+    "Top Speed": 2.05, //Mach
+    "Climb Rate": 254, //m/s
+    "Gross weight": 26.500, //lbs 
+    "Thrust/Weight": 1.095,
+    "Service Ceiling": 58000, //ft
+    "G-Limits', value": 9
+}
+
+
+
 //Aircraft
 //f16
 const f16Embed = new MessageEmbed()
@@ -65,7 +85,7 @@ const f16Embed = new MessageEmbed()
 .setDescription('The General Dynamics F-16 Fighting Falcon is a single-engine multirole fighter aircraft originally developed by General Dynamics for the United States Air Force. Designed as an air superiority day fighter, it evolved into a successful all-weather multirole aircraft.')
 .setThumbnail('https://pcpilotscrew.com/wp-content/uploads/photo-gallery/pcpi2_ytlogo_1024.png?bwg=1584451838')
 .addFields(
-    { name: 'First Flight', value: 'Jan 20, 1974', inline: true },
+    { name: 'First Flight', value: f16Data.name, inline: true },
 //		{ name: '\u200B', value: '\u200B' },
 { name: 'Nickname', value: 'Viper', inline: true },
 { name: 'Role', value: 'Multirole fighter, air superiority fighter', inline: true },

@@ -39,7 +39,7 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
-
+console.log("Nice")
 client.login(token);
 
 
