@@ -1,0 +1,37 @@
+/* 
+DCS Wiki on
+    Jets
+    Helis
+    Airfields
+    Missiles
+    SAMs
+    Terminology
+    Alphabet
+    (Maybe Ground Vehicles Too)
+
+Add Channel Message for applications
+
+
+Direct Server Connection (DCS), with Database
+    With visible Server log (Joins, Kills and more)
+
+Calculators for
+    ft to m and nm (Done)
+    m to ft and nm
+    nm to ft and m 
+    fuel consumption/flight time
+    IAS zu TAS
+    (Missile Range)
+
+DCS Profile with
+    (Qualifications (added later))
+    server stats
+    Main module
+    Available maps
+
+More Module assign functions (maybe not roles, but Databse)
+
+Bot to Website Integration? (Webhooks)
+
+
+*/

@@ -1,0 +1,21 @@
+{
+  "name": "awacs-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^0.12.0",
+    "@discordjs/rest": "^0.3.0",
+    "discord-api-types": "^0.27.2",
+    "discord-collector": "^1.11.15",
+    "discord.js": "^13.6.0",
+    "discordjs-button-pagination": "^3.0.1",
+    "snekfetch": "^4.0.4"
+  }
+}

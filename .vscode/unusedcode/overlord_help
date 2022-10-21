@@ -1,0 +1,55 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed } = require('discord.js');
+
+let wikicommands = [
+    '/aircraft Gives out information about chosen aircraft',
+    '/weapons Gives out information about chosen weapon'
+]
+
+let calccommands = [
+    '/ft-m Converts feet to meters or kilometers',
+    '/ft-nm Converts feet to nautical miles'
+]
+
+console.log(wikicommands, calccommands)
+console.log(wikicommands instanceof Object)
+module.exports = {
+	data: new SlashCommandBuilder()
+		.setName('/overlord_help')
+		.setDescription('Overlord Help')
+        .addStringOption(option =>
+            option.setName('weapon_type')
+                 .setDescription('Choose the weapon type')
+                 .setRequired(true)
+         .addChoice('Wiki Commands', 'Database of Knowledge')
+         .addChoice('Calculator Commands', 'Calculate everything you need')
+         ), 
+	async execute(interaction) {
+        if (chosenString === 'Database of Knowledge')  {
+        await interaction.reply('Working on it');
+        const result = await gethelpEmbed(wikicommands);
+        return await interaction.editReply({ embeds: [result] } );    
+    } else (chosenString === 'Calculate everything you need')  
+        await interaction.reply('Working on it');
+        const result = await gethelpEmbed(calccommands);
+        return await interaction.editReply({ embeds: [result] } );    
+    }
+	}
+/*
+    function gethelpEmbed(help) {
+    const helpEmbed = new MessageEmbed(overlordhelp)
+    .setColor('#0099ff')
+    .setTitle('Pilot-Calculator: Feet to Meters')
+    .setURL('https://pcpilotscrew.com/')
+    //.setAuthor({ name: 'PC Pilots Crew', iconURL: 'https://pcpilotscrew.com/wp-content/uploads/2022/02/pcpi-emblem-clean-small.png', url: 'https://discord.js.org' })
+    .setDescription('')
+    .setThumbnail('https://pcpilotscrew.com/wp-content/uploads/2020/10/pcpi-emblem.png')
+    .addFields(
+        { name: 'Wiki Commands', value: help.wikicommands , inline: false },
+        { name: 'Calculator Commands', value: help.calccommands , inline: false },
+    )
+    .setTimestamp()
+    .setFooter({ text: 'pcpilotscrew.com', iconURL: 'https://pcpilotscrew.com/wp-content/uploads/2022/02/pcpi-emblem-clean-small.png' });
+return gethelpEmbed
+    }
+    */

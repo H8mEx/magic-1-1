@@ -1,0 +1,53 @@
+Hatfield
+Hauler
+Haunter
+Helo
+Rocha
+
+let jets = [
+    {
+        //F-16
+      "name": "F-16 Fighting Falcon",
+      "other names": "Viper",
+      "role": "Multirole",
+      "role2": "Air Superiority Fighter",
+      "First Flight": new Date('1974-01-20'),
+      "Top-Speed": 2.05,
+      "Climb Rate": 254,
+      "Gross Weight": 26500,
+      "Thrust/Weight-Ratio": 1.095,
+      "Service Ceiling": 58000,
+      "G-Limit-Plus": 9,
+      "G-Limit-Minus": "N/A",
+    },
+    {
+        //F/A-18
+        "name": "",
+        "other names": "",
+        "role": "",
+        "role2": "",
+        "First Flight": new Date(''),
+        "Top-Speed": ,
+        "Climb Rate": ,
+        "Gross Weight": ,
+        "Thrust/Weight-Ratio": ,
+        "Service Ceiling": ,
+        "G-Limit-Plus": ,
+        "G-Limit-Minus": "",
+    },
+    //Copy and Paste from here
+    {
+        //This is a comment line. Write the name of the jet here.
+        "name": "",
+        "other names": "",
+        "role": "",
+        "role2": "",
+        "First Flight": new Date(''), //Year/Month/Day
+        "Top-Speed": ,
+        "Climb Rate": ,
+        "Gross Weight": ,
+        "Thrust/Weight-Ratio": ,
+        "Service Ceiling": ,
+        "G-Limit-Plus": ,
+        "G-Limit-Minus": "",
+    },

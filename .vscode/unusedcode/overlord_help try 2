@@ -1,0 +1,60 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+
+const wikicommands = [
+    '/aircraft: Gives out information about chosen aircraft',
+    '/weapons: Gives out information about chosen weapon'
+]
+
+const calccommands = [
+    'ft-m Converts feet to meters or kilometers',
+    'ft-nm Converts feet to nautical miles'
+]
+
+console.log(wikicommands, calccommands)
+console.log(wikicommands instanceof Object)
+module.exports = {
+	data: new SlashCommandBuilder()
+		.setName('/overlord_help')
+		.setDescription('Overlord Help')
+        .addStringOption(option =>
+            option.setName('weapon_type')
+                 .setDescription('Choose the weapon type')
+                 .setRequired(true)
+         .addChoice('Wiki Commands', 'Database of Knowledge')
+         .addChoice('Calculator Commands', 'Calculate everything you need')
+         ), 
+	async execute(interaction) {
+        if (chosenString === 'Database of Knowledge')  {
+        await interaction.reply(responseObject[message.content]);
+
+    } else if (chosenString === 'Calculate everything you need')  {
+        await interaction.reply(wikicommands.one.toString());
+    
+} else {
+
+    console.log('error')
+    }
+	}
+}
+
+function genhelp(help) {
+
+help
+
+    const WeaponEmbed = new MessageEmbed()
+    .setColor('#0099ff')
+    .setURL('https://pcpilotscrew.com/')
+    .setAuthor({ name: 'PC Pilots Crew', iconURL: 'https://pcpilotscrew.com/wp-content/uploads/2022/02/pcpi-emblem-clean-small.png', url: 'https://discord.js.org' })
+    //.setThumbnail('https://pcpilotscrew.com/wp-content/uploads/photo-gallery/pcpi2_ytlogo_1024.png?bwg=1584451838')
+    .addFields(
+    { name: 'Designation', value: weapon.designation, inline: true },
+    //		{ name: '\u200B', value: '\u200B' },
+    { name: 'Name', value: weapon.wepname, inline: true },
+    { name: 'Developer', value: weapon.dev, inline: true },
+    { name: 'Guidance', value: weapon.guidance, inline: true },
+    { name: 'Range (S/M/L)', value: weapon.range, inline: true },
+    { name: 'Range (Max)', value: weapon.rangekm + ` km, ` + weapon.rangenm.toFixed(2) + ' nm', inline: true },
+    { name: 'Range (Effective)', value: weapon.rangekm * erange + ` km, ` + erange * weapon.rangenm.toFixed(2) + ' nm', inline: true },
+    { name: 'Top Speed', value: weapon.speed, inline: true },
+    { name: 'Notes', value: weapon.note, inline: false },
+    
