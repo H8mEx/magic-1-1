@@ -90,12 +90,46 @@ const viggenData = {
     "cruise_speed": 0.9, //Mach
     "combat_range": 540, //NM
     "climb_rate": 203, //m/s
-    "gross_weight": 37.479, //lbs 
+    "gross_weight": 37479, //lbs 
     "thrust_weight": 0.76,
     "service_ceiling": 59000, //ft
     "g-limit": "+7",
     "description": "The AJS-37 Viggen (Bolt) is a Swedish-designed, single engine, supersonic strike fighter. First operational in the early 1970s, the Viggen was one of the most advanced aircrafts in Europe before the Panavia Tornado.",
     "image": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Saab_AJS-37_Viggen_37098_52_%28SE-DXN%29_%289256079273%29.jpg"
+}
+
+const f15cData = {
+    "name": "MC Donnal Douglas F-15C",
+    "nickname": "Eagle",
+    "first_flight": "Jul 27, 1972",
+    "role": types[1],
+    "top_speed": 2.5, //Mach
+    "cruise_speed": 0.86, //Mach
+    "combat_range": 1061, //NM
+    "climb_rate": 254, //m/s
+    "gross_weight": 44500, //lbs 
+    "thrust_weight": 1.07,
+    "service_ceiling": 65000, //ft
+    "g-limit": "+9, -3",
+    "description": "The F-15C Eagle  is an American-designed, twin-engine, supersonic fighter. First operational in the late 1970s, the Eagle is among the most successful fighters in the world, with 102 confirmed kills without ever getting shot down.    ",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/F-15%2C_71st_Fighter_Squadron%2C_in_flight.JPG/1920px-F-15%2C_71st_Fighter_Squadron%2C_in_flight.JPG"
+}
+
+const mig29sData = {
+    "name": "MiG-29S",
+    "nickname": "Fulcrum C",
+    "first_flight": "Dec 23, 1980",
+    "role": types[1],
+    "top_speed": 1.98, //Mach
+    "cruise_speed": 1.21, //Mach
+    "combat_range": 770, //NM
+    "climb_rate": 330, //m/s
+    "gross_weight": 42680, //lbs 
+    "thrust_weight": 1.09,
+    "service_ceiling": 59000, //ft
+    "g-limit": "+9",
+    "description": "The MiG-29 Fulcrum is a Russian-designed, twin-engine, supersonic fighter. First operational in the early 1980s, the Fulcrum is a light weight fighter, comparable to the American F/A-18 Hornet and F-16.",
+    "image": "https://static.wikia.nocookie.net/flight/images/1/1f/RL-Aircraft-Mikoyan_MiG-29.jpg/revision/latest/scale-to-width-down/350?cb=20211112230250"
 }
 
 module.exports = {
@@ -110,6 +144,9 @@ module.exports = {
         .addChoice("Eurofighter Typhoon", "Eurofighter Typhoon")
         .addChoice("F-14B", "Grumman F-14B Tomcat")
         .addChoice("AJS-37", "Saab AJS-37 Viggen")
+        .addChoice("MiG-29S", "MiG-29S")
+        .addChoice("F-15C", "F-15C Eagle")
+
 
         ), 
         async execute(interaction) {
@@ -136,8 +173,18 @@ module.exports = {
                 aircraft = viggenData
                 createEmbed()
                 return interaction.reply({ embeds: [Embed]});
-                 
+            } else 
+            if (chosenString === "MiG-29S")  {
+                aircraft = mig29sData
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
+            } else 
+            if (chosenString === "F-15C Eagle")  {
+                aircraft = f15cData
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
      
+
 
             } else {
             return interaction.reply('No option was provided!');
