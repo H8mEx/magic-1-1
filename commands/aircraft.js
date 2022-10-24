@@ -1,50 +1,17 @@
 const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-
-module.exports = {
-	data: new SlashCommandBuilder()
-		.setName('aircraft')
-		.setDescription('Information about the options provided.')
-        .addStringOption(option =>
-           option.setName('aircraft_type')
-                .setDescription('Choose the aircraft type')
-                .setRequired(true)
-		.addChoice('F-16', 'F-16 Fighting Falcon')
-        .addChoice("Eurofighter Typhoon", "Eurofighter Typhoon")
-        .addChoice("F-14B", "Grumman F-14B Tomcat")
-
-        ), 
-        async execute(interaction) {
-            
-            var chosenString = interaction.options.getString('aircraft_type');
-            console.log('A user requested information about: ' + chosenString)
-
-            if (chosenString === 'F-16 Fighting Falcon')  {
-            return interaction.reply({ embeds: [f16Embed]});
-            } else 
-            if (chosenString === "Eurofighter Typhoon")  {
-                return interaction.reply({ embeds: [eurofighterEmbed]});
-            } else 
-            if (chosenString === "Grumman F-14B Tomcat")  {
-                return interaction.reply({ embeds: [f14Embed]});
-                 
-
-            } else {
-            return interaction.reply('No option was provided!');
-        
-        }
-        
-}
-
-}
+let aircraft = "Undefined"
+let Embed = ""
 
 //Aircraft-Data
 
 const types = [
     "Multirole Fighter",
     "Air Superiority Fighter",
-    "Interceptor"
+    "Interceptor",
+    "Strike Fighter"
 ]
+
 /* TEMPLATE!!
 const templateData = {
     "name": "template",
@@ -114,81 +81,98 @@ const f14Data = {
     "image": "https://static.wikia.nocookie.net/flight/images/f/ff/RL-Aircraft-Grumman_F-14_Tomcat.jpg/revision/latest/scale-to-width-down/350?cb=20210818092755"
 }
 
+const viggenData = {
+    "name": "Saab AJS-37 Viggen",
+    "nickname": "Viggen",
+    "first_flight": "Feb 8th, 1967 (Viggen; not AJS)",
+    "role": types[3],
+    "top_speed": 1.73, //Mach
+    "cruise_speed": 0.9, //Mach
+    "combat_range": 540, //NM
+    "climb_rate": 203, //m/s
+    "gross_weight": 37.479, //lbs 
+    "thrust_weight": 0.76,
+    "service_ceiling": 59000, //ft
+    "g-limit": "+7",
+    "description": "The AJS-37 Viggen (Bolt) is a Swedish-designed, single engine, supersonic strike fighter. First operational in the early 1970s, the Viggen was one of the most advanced aircrafts in Europe before the Panavia Tornado.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Saab_AJS-37_Viggen_37098_52_%28SE-DXN%29_%289256079273%29.jpg"
+}
+
+module.exports = {
+	data: new SlashCommandBuilder()
+		.setName('aircraft')
+		.setDescription('Information about the options provided.')
+        .addStringOption(option =>
+           option.setName('aircraft_type')
+                .setDescription('Choose the aircraft type')
+                .setRequired(true)
+		.addChoice('F-16', 'F-16 Fighting Falcon')
+        .addChoice("Eurofighter Typhoon", "Eurofighter Typhoon")
+        .addChoice("F-14B", "Grumman F-14B Tomcat")
+        .addChoice("AJS-37", "Saab AJS-37 Viggen")
+
+        ), 
+        async execute(interaction) {
+            
+            var chosenString = interaction.options.getString('aircraft_type');
+            console.log('A user requested information about: ' + chosenString)
+
+            if (chosenString === 'F-16 Fighting Falcon')  {
+            aircraft = f16Data
+            createEmbed()
+            return interaction.reply({ embeds: [Embed]});
+            } else 
+            if (chosenString === "Eurofighter Typhoon")  {
+                aircraft = eurofighterData
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
+            } else 
+            if (chosenString === "Grumman F-14B Tomcat")  {
+                aircraft = f14Data
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
+            } else 
+            if (chosenString === "Saab AJS-37 Viggen")  {
+                aircraft = viggenData
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
+                 
+     
+
+            } else {
+            return interaction.reply('No option was provided!');
+        
+        }
+        
+}
+
+}
+
+
 //embeds
-//f16
-const f16Embed = new MessageEmbed()
+function createEmbed() {
+Embed = new MessageEmbed()
 .setColor('#0099ff')
-.setTitle(f16Data.name)
+.setTitle(aircraft.name.toString())
 .setURL('https://pcpilotscrew.com/')
 .setAuthor({ name: 'PC Pilots Crew', iconURL: 'https://pcpilotscrew.com/wp-content/uploads/2022/02/pcpi-emblem-clean-small.png', url: 'https://discord.js.org' })
-.setDescription(f16Data.description.toString())
+.setDescription(aircraft.description.toString())
 //.setThumbnail('https://pcpilotscrew.com/wp-content/uploads/photo-gallery/pcpi2_ytlogo_1024.png?bwg=1584451838')
 .addFields(
-    { name: 'First Flight', value: f16Data.first_flight.toString(), inline: true },
-{ name: 'Nickname', value: f16Data.nickname.toString(), inline: true },
-{ name: 'Role', value: f16Data.role.toString(), inline: false },
-    { name: 'Top Speed', value: "Mach: "+f16Data.top_speed.toString(), inline: true },
-    { name: 'Cruise Speed', value: "Mach: "+f16Data.cruise_speed.toString(), inline: true },
-    { name: 'Combat Range', value: f16Data.combat_range.toString()+" NM", inline: true },
-    { name: 'Climb Rate', value: f16Data.climb_rate.toString()+" m/s", inline: true },
-{ name: 'Gross Weight', value: f16Data.gross_weight.toString()+" lbs", inline: true },
-{ name: 'Thrust/Weight', value: f16Data.thrust_weight.toString(), inline: true },
-{ name: 'Service Ceiling', value: f16Data.service_ceiling.toString()+" ft", inline: true },
-{ name: 'G-Limits', value: f16Data['g-limit'].toString(), inline: true },
+    { name: 'First Flight', value: aircraft.first_flight.toString(), inline: true },
+{ name: 'Nickname', value: aircraft.nickname.toString(), inline: true },
+{ name: 'Role', value: aircraft.role.toString(), inline: false },
+    { name: 'Top Speed', value: "Mach: "+aircraft.top_speed.toString(), inline: true },
+    { name: 'Cruise Speed', value: "Mach: "+aircraft.cruise_speed.toString(), inline: true },
+    { name: 'Combat Range', value: aircraft.combat_range.toString()+" NM", inline: true },
+    { name: 'Climb Rate', value: aircraft.climb_rate.toString()+" m/s", inline: true },
+{ name: 'Gross Weight', value: aircraft.gross_weight.toString()+" lbs", inline: true },
+{ name: 'Thrust/Weight', value: aircraft.thrust_weight.toString(), inline: true },
+{ name: 'Service Ceiling', value: aircraft.service_ceiling.toString()+" ft", inline: true },
+{ name: 'G-Limits', value: aircraft['g-limit'].toString(), inline: true },
   
 )
-.setImage(f16Data.image)
+.setImage(aircraft.image)
 .setTimestamp()
 .setFooter({ text: 'pcpilotscrew.com', iconURL: 'https://pcpilotscrew.com/wp-content/uploads/2022/02/pcpi-emblem-clean-small.png' });
-
-//eurofighter
-const eurofighterEmbed = new MessageEmbed()
-.setColor('#0099ff')
-.setTitle(eurofighterData.name.toString())
-.setURL('https://pcpilotscrew.com/')
-.setAuthor({ name: 'PC Pilots Crew', iconURL: 'https://pcpilotscrew.com/wp-content/uploads/2022/02/pcpi-emblem-clean-small.png', url: 'https://discord.js.org' })
-.setDescription(eurofighterData.description.toString())
-//.setThumbnail('https://pcpilotscrew.com/wp-content/uploads/photo-gallery/pcpi2_ytlogo_1024.png?bwg=1584451838')
-.addFields(
-    { name: 'First Flight', value: eurofighterData.first_flight.toString(), inline: true },
-{ name: 'Nickname', value: eurofighterData.nickname.toString(), inline: true },
-{ name: 'Role', value: eurofighterData.role.toString(), inline: false },
-    { name: 'Top Speed', value: "Mach: "+eurofighterData.top_speed.toString(), inline: true },
-    { name: 'Cruise Speed', value: "Mach: "+eurofighterData.cruise_speed.toString(), inline: true },
-    { name: 'Combat Range', value: eurofighterData.combat_range.toString()+" NM", inline: true },
-    { name: 'Climb Rate', value: eurofighterData.climb_rate.toString()+" m/s", inline: true },
-{ name: 'Gross Weight', value: eurofighterData.gross_weight.toString()+" lbs", inline: true },
-{ name: 'Thrust/Weight', value: eurofighterData.thrust_weight.toString(), inline: true },
-{ name: 'Service Ceiling', value: eurofighterData.service_ceiling.toString()+" ft", inline: true },
-{ name: 'G-Limits', value: eurofighterData['g-limit'].toString(), inline: true },
-  
-)
-.setImage(eurofighterData.image)
-.setTimestamp()
-.setFooter({ text: 'pcpilotscrew.com', iconURL: 'https://pcpilotscrew.com/wp-content/uploads/2022/02/pcpi-emblem-clean-small.png' });
-
-//f14b
-const f14Embed = new MessageEmbed()
-.setColor('#0099ff')
-.setTitle(f14Data.name)
-.setURL('https://pcpilotscrew.com/')
-.setAuthor({ name: 'PC Pilots Crew', iconURL: 'https://pcpilotscrew.com/wp-content/uploads/2022/02/pcpi-emblem-clean-small.png', url: 'https://discord.js.org' })
-.setDescription(f14Data.description.toString())
-//.setThumbnail('https://pcpilotscrew.com/wp-content/uploads/photo-gallery/pcpi2_ytlogo_1024.png?bwg=1584451838')
-.addFields(
-    { name: 'First Flight', value: f14Data.first_flight.toString(), inline: true },
-{ name: 'Nickname', value: f14Data.nickname.toString(), inline: true },
-{ name: 'Role', value: f14Data.role.toString(), inline: false },
-    { name: 'Top Speed', value: "Mach: "+f14Data.top_speed.toString(), inline: true },
-    { name: 'Cruise Speed', value: "Mach: "+f14Data.cruise_speed.toString(), inline: true },
-    { name: 'Combat Range', value: f14Data.combat_range.toString()+" NM", inline: true},
-    { name: 'Climb Rate', value: f14Data.climb_rate.toString()+" ft/min", inline: true },
-{ name: 'Gross Weight', value: f14Data.gross_weight.toString()+" lbs", inline: true },
-{ name: 'Thrust/Weight', value: f14Data.thrust_weight.toString(), inline: true },
-{ name: 'Service Ceiling', value: f14Data.service_ceiling.toString()+" ft", inline: true },
-{ name: 'G-Limits', value: f14Data['g-limit'].toString(), inline: true },
-  
-)
-.setImage(f14Data.image)
-.setTimestamp()
-.setFooter({ text: 'pcpilotscrew.com', iconURL: 'https://pcpilotscrew.com/wp-content/uploads/2022/02/pcpi-emblem-clean-small.png' });
+}
