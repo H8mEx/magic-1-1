@@ -1,136 +1,47 @@
 const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const wikidata = require("./../data/wikidata");
+
+const f15cData = wikidata.f15cData
+const f16Data = wikidata.f16Data
+const f14bData = wikidata.f14bData
+const mig29sData = wikidata.mig29sData
+const eurofighterData = wikidata.eurofighterData
+const mig29aData = wikidata.mig29aData
+const m2000cData = wikidata.m2000cData
+const f14aData = wikidata.f14aData
+const miragef1Data = wikidata.miragef1Data
+const mig21bisData = wikidata.mig21bisData
+const su27Data = wikidata.su27Data
+const su33Data = wikidata.su33Data
+const fa18cData = wikidata.fa18cData
+const av8bData = wikidata.av8bData
+const a10aData = wikidata.a10aData
+const a10cData = wikidata.a10cData
+const f15eData = wikidata.f15eData
+const f4eData = wikidata.f4eData
+const f5e3Data = wikidata.f5e3Data
+const su25Data = wikidata.su25Data
+const su25tData = wikidata.su25tData
+const l39Data = wikidata.l39Data
+const t45Data = wikidata.t45Data
+const mig23Data = wikidata.mig23Data
+const ajs37Data = wikidata.ajs37Data
+const c130Data = wikidata.c130Data
+const a4Data = wikidata.a4Data
+const mb339Data = wikidata.mb339Data
+const g91Data = wikidata.g91Data
+const pa200Data = wikidata.pa200Data
+const f100dData = wikidata.f100dData
+const f86Data = wikidata.f86Data
+const mig15Data = wikidata.mig15Data
+const mig19Data = wikidata.mig19Data
+const kfirData = wikidata.kfirData
+const jf17Data = wikidata.jf17Data
+
 let aircraft = "Undefined"
 let Embed = ""
 
-//Aircraft-Data
-
-const types = [
-    "Multirole Fighter",
-    "Air Superiority Fighter",
-    "Interceptor",
-    "Strike Fighter"
-]
-
-/* TEMPLATE!!
-const templateData = {
-    "name": "template",
-    "nickname": "template",
-    "first_flight": "template",
-    "role": types[0] + ", "+types[1],
-    "top_speed": 0, //Mach
-    "cruise_speed": 0, //Mach
-    "combat_range": 0, //NM
-    "climb_rate": 0, //m/s
-    "gross_weight": 0, //lbs 
-    "thrust_weight": 0,
-    "service_ceiling": 0, //ft
-    "g-limit": "+0, -0",
-    "description": "template",
-    "image": "template"
-}
-*/
-const f16Data = {
-    "name": "F-16 Fighting Falcon",
-    "nickname": "Viper",
-    "first_flight": "Jan 20, 1974",
-    "role": types[0] + ", "+types[1],
-    "top_speed": 2.05, //Mach
-    "cruise_speed": 0.752018, //Mach
-    "combat_range": 295, //NM
-    "climb_rate": 254, //m/s
-    "gross_weight": 26.500, //lbs 
-    "thrust_weight": 1.095,
-    "service_ceiling": 58000, //ft
-    "g-limit": 9,
-    "description": "The General Dynamics F-16 Fighting Falcon is a single-engine multirole fighter aircraft originally developed by General Dynamics for the United States Air Force. Designed as an air superiority day fighter, it evolved into a successful all-weather multirole aircraft.",
-    "image": "https://static.wikia.nocookie.net/flight/images/a/a0/RL-Aircraft-F-16.jpg/revision/latest/scale-to-width-down/350?cb=20210703162930"
-}
-
-const eurofighterData = {
-    "name": "Eurofighter Typhoon",
-    "nickname": "Typhoon",
-    "first_flight": "March 27, 1994",
-    "role": types[0] + ", "+types[1],
-    "top_speed": 2, //Mach
-    "cruise_speed": 1.5, //Mach
-    "combat_range": 1500, //NM
-    "climb_rate": 315, //m/s
-    "gross_weight": 24.251, //lbs 
-    "thrust_weight": 1.15,
-    "service_ceiling": 65000, //ft
-    "g-limit": "+9, -3",
-    "description": "The Typhoon is a twin-engine, supersonic, multi-role military aircraft produced by Eurofighter, a German-based consortium of Airbus Defense and Space of Germany and Spain, BAE Systems of the United Kingdom, and Italy's Leonardo.",
-    "image": "https://imgr1.flugrevue.de/image-article169Gallery-bcca40fe-1552537.jpg"
-}
-
-const f14Data = {
-    "name": "Grumman F-14B Tomcat",
-    "nickname": "Tomcat",
-    "first_flight": "December 21, 1970 (F-14A)",
-    "role": types[0] + ", "+types[1]+ ", "+types[2],
-    "top_speed": 2.34, //Mach
-    "cruise_speed": 0.85, //Mach
-    "combat_range": 500, //NM
-    "climb_rate": 6000, 
-    "gross_weight": 41780, //lbs 
-    "thrust_weight": 0.73,
-    "service_ceiling": 53000, //ft
-    "g-limit": "+7,5",
-    "description": "The F-14 is a carrier-capable supersonic, twin-engine, twin-tail, variable-sweep wing fighter aircraft. It served as the U.S. Navy's primary maritime air superiority fighter, fleet defense interceptor, and tactical aerial reconnaissance platform.",
-    "image": "https://static.wikia.nocookie.net/flight/images/f/ff/RL-Aircraft-Grumman_F-14_Tomcat.jpg/revision/latest/scale-to-width-down/350?cb=20210818092755"
-}
-
-const viggenData = {
-    "name": "Saab AJS-37 Viggen",
-    "nickname": "Viggen",
-    "first_flight": "Feb 8th, 1967 (Viggen; not AJS)",
-    "role": types[3],
-    "top_speed": 1.73, //Mach
-    "cruise_speed": 0.9, //Mach
-    "combat_range": 540, //NM
-    "climb_rate": 203, //m/s
-    "gross_weight": 37479, //lbs 
-    "thrust_weight": 0.76,
-    "service_ceiling": 59000, //ft
-    "g-limit": "+7",
-    "description": "The AJS-37 Viggen (Bolt) is a Swedish-designed, single engine, supersonic strike fighter. First operational in the early 1970s, the Viggen was one of the most advanced aircrafts in Europe before the Panavia Tornado.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Saab_AJS-37_Viggen_37098_52_%28SE-DXN%29_%289256079273%29.jpg"
-}
-
-const f15cData = {
-    "name": "MC Donnal Douglas F-15C",
-    "nickname": "Eagle",
-    "first_flight": "Jul 27, 1972",
-    "role": types[1],
-    "top_speed": 2.5, //Mach
-    "cruise_speed": 0.86, //Mach
-    "combat_range": 1061, //NM
-    "climb_rate": 254, //m/s
-    "gross_weight": 44500, //lbs 
-    "thrust_weight": 1.07,
-    "service_ceiling": 65000, //ft
-    "g-limit": "+9, -3",
-    "description": "The F-15C Eagle  is an American-designed, twin-engine, supersonic fighter. First operational in the late 1970s, the Eagle is among the most successful fighters in the world, with 102 confirmed kills without ever getting shot down.    ",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/F-15%2C_71st_Fighter_Squadron%2C_in_flight.JPG/1920px-F-15%2C_71st_Fighter_Squadron%2C_in_flight.JPG"
-}
-
-const mig29sData = {
-    "name": "MiG-29S",
-    "nickname": "Fulcrum C",
-    "first_flight": "Dec 23, 1980",
-    "role": types[1],
-    "top_speed": 1.98, //Mach
-    "cruise_speed": 1.21, //Mach
-    "combat_range": 770, //NM
-    "climb_rate": 330, //m/s
-    "gross_weight": 42680, //lbs 
-    "thrust_weight": 1.09,
-    "service_ceiling": 59000, //ft
-    "g-limit": "+9",
-    "description": "The MiG-29 Fulcrum is a Russian-designed, twin-engine, supersonic fighter. First operational in the early 1980s, the Fulcrum is a light weight fighter, comparable to the American F/A-18 Hornet and F-16.",
-    "image": "https://static.wikia.nocookie.net/flight/images/1/1f/RL-Aircraft-Mikoyan_MiG-29.jpg/revision/latest/scale-to-width-down/350?cb=20211112230250"
-}
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -146,6 +57,17 @@ module.exports = {
         .addChoice("AJS-37", "Saab AJS-37 Viggen")
         .addChoice("MiG-29S", "MiG-29S")
         .addChoice("F-15C", "F-15C Eagle")
+        .addChoice("MiG-29A", "MiG-29A")
+        .addChoice("Mirage M-2000C", "Mirage M-2000C")
+        .addChoice("F-14A", "Grumman F-14A Tomcat")
+        .addChoice("F-4E", "F-4E")
+        .addChoice("F-5E3", "F-5E3")
+        .addChoice("MB-339", "MB-339")
+        .addChoice("G-91", "G-91")
+        .addChoice("MRCA PA-200", "MRCA PA-200")
+        .addChoice("F-100D", "F-100D")
+        .addChoice("F-86", "F-86")
+    //    .addChoice("template", "template")
 
 
         ), 
@@ -165,12 +87,12 @@ module.exports = {
                 return interaction.reply({ embeds: [Embed]});
             } else 
             if (chosenString === "Grumman F-14B Tomcat")  {
-                aircraft = f14Data
+                aircraft = f14bData
                 createEmbed()
                 return interaction.reply({ embeds: [Embed]});
             } else 
             if (chosenString === "Saab AJS-37 Viggen")  {
-                aircraft = viggenData
+                aircraft = ajs37Data
                 createEmbed()
                 return interaction.reply({ embeds: [Embed]});
             } else 
@@ -183,8 +105,63 @@ module.exports = {
                 aircraft = f15cData
                 createEmbed()
                 return interaction.reply({ embeds: [Embed]});
-     
+            } else 
+            if (chosenString === "MiG-29A")  {
+                aircraft = mig29aData
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
+            } else 
+            if (chosenString === "Mirage M-2000C")  {
+                aircraft = m2000cData
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
+            } else 
+            if (chosenString === "Grumman F-14A Tomcat")  {
+                aircraft = f14aData
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
 
+            } else 
+            if (chosenString === "F-4E")  {
+                aircraft = f4eData
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
+
+            } else 
+            if (chosenString === "F-5E3")  {
+                aircraft = f5e3Data
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
+
+            } else 
+            if (chosenString === "MB-339")  {
+                aircraft = mb339Data
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
+
+            } else 
+            if (chosenString === "G-91")  {
+                aircraft = g91Data
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
+
+            } else 
+            if (chosenString === "MRCA PA-200")  {
+                aircraft = pa200Data
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
+
+            } else 
+            if (chosenString === "F-100D")  {
+                aircraft = f100dData
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
+
+            } else 
+            if (chosenString === "F-86")  {
+                aircraft = f86Data
+                createEmbed()
+                return interaction.reply({ embeds: [Embed]});
 
             } else {
             return interaction.reply('No option was provided!');

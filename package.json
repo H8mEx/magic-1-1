@@ -1,13 +1,13 @@
 {
   "name": "awacs-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "��#\u0000 \u0000m\u0000a\u0000g\u0000i\u0000c\u0000-\u00001\u0000-\u00001\u0000\r\u0000 \u0000",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "H8mEx",
   "license": "ISC",
   "dependencies": {
     "@discordjs/builders": "^0.12.0",
@@ -17,5 +17,10 @@
     "discord.js": "^13.6.0",
     "discordjs-button-pagination": "^3.0.1",
     "snekfetch": "^4.0.4"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "magic-1-1"
   }
 }

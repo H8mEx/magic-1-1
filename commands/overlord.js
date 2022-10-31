@@ -22,7 +22,7 @@ return interaction.reply(
     '/ft-nm :: Feet to Miles \n'+
     '\n'+
     '**Gameplay Commands:** \n'+
-    '/challenge :: Gives you randomized mini-xp-challenges \n'+
+    '/challenge :: Gives you randomized mini-xp-challenges for DCS \n'+
     '\n'
     )
 

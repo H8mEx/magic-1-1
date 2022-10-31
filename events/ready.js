@@ -5,7 +5,7 @@ module.exports = {
 		console.log(`Ready! Logged in as ${client.user.tag}`);
         client.user.setPresence({
             activities: [{ 
-              name: "Alpha V.0.26",
+              name: "Alpha V.0.31",
               type: "WATCHING"
             }],
             status: "idle"

@@ -3,6 +3,7 @@ const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
 const { MessageEmbed } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const { ChannelType, PermissionsBitField } = require('discord.js');
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -39,7 +40,8 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
-console.log("Nice")
+
 client.login(token);
 
+const guild = client.guilds.cache.get("257984126718574592");
 
