@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const wikidata = require("./../data/wikidata");
 let compareEmbed = ""
 
-const data = wikidata.aircraftdata
+let data = wikidata.aircraftdata
 
 let Embed = ""
 
@@ -31,8 +31,8 @@ module.exports = {
         .addChoice("F-14A", "Grumman F-14A Tomcat")
         .addChoice("F-4E", "F-4E")
         .addChoice("F-5E3", "F-5E3")
-        .addChoice("MB-339", "MB-339")
-        .addChoice("G-91", "G-91")
+        .addChoice("MB-339", "Aermacchi MB-339")
+        .addChoice("G.91", "Fiat G.91")
         .addChoice("MRCA PA-200", "MRCA PA-200")
         .addChoice("F-100D", "F-100D")
         .addChoice("F-86", "F-86")
@@ -53,8 +53,8 @@ module.exports = {
          .addChoice("F-14A", "Grumman F-14A Tomcat")
          .addChoice("F-4E", "F-4E")
          .addChoice("F-5E3", "F-5E3")
-         .addChoice("MB-339", "MB-339")
-         .addChoice("G-91", "G-91")
+         .addChoice("MB-339", "Aermacchi MB-339")
+         .addChoice("G.91", "Fiat G.91")
          .addChoice("MRCA PA-200", "MRCA PA-200")
          .addChoice("F-100D", "F-100D")
          .addChoice("F-86", "F-86")
@@ -67,49 +67,39 @@ module.exports = {
             console.log("Chosen Strings: "+chosenString1+ ", "+chosenString2)
             
             try{
-                aircraft1 = data.find(aircraft => aircraft.name === chosenString1);
-                aircraft2 = data.find(aircraft => aircraft.name === chosenString2);
+                data = data.filter(function( element ) {
+                    return element !== undefined;
+                 });
+
+                 for (let aircraft of data){
+                    if (aircraft.name === chosenString1){
+                        aircraft1 = aircraft;
+                    }
+                    if (aircraft.name === chosenString2){
+                        aircraft2 = aircraft;
+                    }
+                
+                }
+
+                if (aircraft1 === aircraft2) {
+                    return interaction.reply("Error Mate! H8mEx has to fix this. Both aircraft seem to be the same!")
+                }
+
             }catch (error){
                 console.log(error)
-                return interaction.reply({ content: 'Error: '+error, ephemeral: true });
-            }
+                return interaction.reply({ content: '@213660637274832897 Error: '+error, ephemeral: true });
+            } 
 
+            
+            console.log('A user is comparing stats of '+aircraft1.name+ " with "+aircraft2.name )
+
+            createEmbed();
+            return interaction.reply({ embeds: [Embed]});
         }
+        
 }
-console.log('A user is comparing stats of '+aircraft1.name+ " with "+aircraft2.name )
-
-createEmbed();
-return interaction.reply({ embeds: [Embed]});
 
 
-
-/*
-function createEmbed() {
-    compareEmbed = new MessageEmbed()
-    .setColor('#0099ff')
-    .setTitle("Jet Comparison")
-    .setURL('https://pcpilotscrew.com/')
-    .setAuthor({ name: 'PC Pilots Crew', iconURL: 'https://pcpilotscrew.com/wp-content/uploads/2022/02/pcpi-emblem-clean-small.png', url: 'https://discord.js.org' })
-    .setDescription("You are comparing "+aircraft1[0].toString()+" with "+aircraft2[0].toString())
-    .addFields(
-        { name: 'First Flight'+aircraft[0].toString(), value: aircraft.first_flight.toString(), inline: true },
-    { name: 'Nickname', value: aircraft.nickname.toString(), inline: true },
-    { name: 'Role', value: aircraft.role.toString(), inline: false },
-        { name: 'Top Speed', value: "Mach: "+aircraft.top_speed.toString(), inline: true },
-        { name: 'Cruise Speed', value: "Mach: "+aircraft.cruise_speed.toString(), inline: true },
-        { name: 'Combat Range', value: aircraft.combat_range.toString()+" NM", inline: true },
-        { name: 'Climb Rate', value: aircraft.climb_rate.toString()+" m/s", inline: true },
-    { name: 'Gross Weight', value: aircraft.gross_weight.toString()+" lbs", inline: true },
-    { name: 'Thrust/Weight', value: aircraft.thrust_weight.toString(), inline: true },
-    { name: 'Service Ceiling', value: aircraft.service_ceiling.toString()+" ft", inline: true },
-    { name: 'G-Limits', value: aircraft['g-limit'].toString(), inline: true },
-      
-    )
-    .setImage(aircraft.image)
-    .setTimestamp()
-    .setFooter({ text: 'pcpilotscrew.com', iconURL: 'https://pcpilotscrew.com/wp-content/uploads/2022/02/pcpi-emblem-clean-small.png' });
-    }
-*/
 
 function createEmbed() {
     Embed = new MessageEmbed()

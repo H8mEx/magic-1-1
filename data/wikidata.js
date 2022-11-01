@@ -248,7 +248,7 @@ const mb339Data = {
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Aermacchi_MB-339_Freccia_Tricolore.jpg/1280px-Aermacchi_MB-339_Freccia_Tricolore.jpg"
 }
 const g91Data = {
-    "name": "Fiat G-91",
+    "name": "Fiat G.91",
     "nickname": "Little Sabre",
     "first_flight": "Aug 9, 1956",
     "role": "(Light) "+types[4],
