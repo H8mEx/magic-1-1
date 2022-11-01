@@ -11,9 +11,11 @@ module.exports = {
 return interaction.reply(
     '**Basic Commands:** \n'+
     '/overlord :: Lists all commands \n'+
+    '/game :: Adds or removes game roles \n'+
     '\n'+
     '**Wiki Commands:** \n'+
     '/aircraft :: Gives info about certain aircraft (WIP)\n'+
+    '/jetcompare :: Compares jets with each other (WIP)\n'+
     '/weapon :: Gives info about certain weapon (WIP) \n'+
     '/wisdom :: Sends you random knowledge \n'+
     '\n'+

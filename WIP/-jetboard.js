@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const wikidata = require("./../data/wikidata");
+const wikidata = require("../data/wikidata");
 let Embed = ""
 const aircraftdata = wikidata.aircraftdata
 let datatype = ""
